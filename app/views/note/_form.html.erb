@@ -1,0 +1,20 @@
+
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<div class="container">
+<%= form_for(:note, remote: remote, html: {role: :form, 'data-model' => 'note'}) do |f| %>
+  <div class="form-group col-md-8">
+      <%= f.label :notes, class: 'control-label'%><br>
+      <%= f.text_area :notes, class: 'form-control'%>
+  </div>
+   
+  <div class="form-group col-md-8">
+      <%= f.label :category, class: 'control-label'%><br>
+      <%= f.text_field :category, class: 'form-control' %>
+  </div>
+  <p class="col-md-4">
+    <%= f.submit "Submit", class: "btn btn-primary"%>
+  </p>
+<% end %>
+</div>
+

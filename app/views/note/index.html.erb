@@ -1,0 +1,86 @@
+
+<div class="container">
+
+    <div style="margin-left: 43%; padding-top: 2%;">
+    	<%= link_to image_tag("add-notebook-notes.png"), '#new_person_modal', 'data-toggle' => 'modal' %>
+    </div>
+    <br/>
+
+    <h1><i>Notes</i></h1>
+
+    <div class="row">
+      <div class="col-md-10">
+
+     	  <% @notes.each do |note| %>
+      	 <div id="note_div" class="box box1 shadow1 content_alien">
+         <%= link_to image_tag("push-pin_note.png", :class => "pin_align") %>
+    			<p><%= note.notes %></p>
+         
+          <p class="tag_align"><%= render_with_hashtags(note.category) %></p>
+            <i class="date_align"><%= note.created_at.to_formatted_s(:short) %></i>
+    		
+        </div>
+      <% end %>
+      <!-- <div class="box box2 shadow2">
+        <h3>Shadow 2</h3>
+      </div>
+      <div class="box box3 shadow3">
+        <h3>Shadow 3</h3>
+      </div>
+      <div class="box box4 shadow4">
+        <h3>Shadow 4</h3>
+      </div>
+      <div class="box box5 shadow5">
+        <h3>Shadow 5</h3>
+      </div>
+      <div class="box box6 shadow6">
+        <h3>Shadow 6</h3>
+      </div>
+      <div class="box box7 shadow7">
+        <h3>Shadow 7</h3>
+      </div>
+      <div class="box box8 shadow8">
+        <h3>Shadow 8</h3>
+      </div> -->
+    </div>
+      <div class="col-md-2">
+      <h2>Tags</h2>
+        <ul>
+        <% @tags.each do |tag|%>
+          <li><p><%= render_with_hashtags('#'+tag.name)%></p></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    <div id="color_me">
+        <div class="box2 color_align"></div>
+        <div class="box3 color_align"></div>
+        <div class="box6 color_align"></div>
+    </div>
+    <div class="modal fade" id="new_person_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Create new note</h4>
+          </div>
+          <div class="modal-body">
+            <%# Render the new person form (passing modal => true to enable remote => true) %>
+            <%= render 'form', modal: true %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".pin_align").click(function(){
+        $("#color_me").animate({top: '250px'});
+        console.log("clicked")
+    });
+});
+</script>>
